@@ -24,11 +24,29 @@
 		.hidden{ display:none !important; }
 	</style>
 	<script>
+		function rgbToHex(r, g, b) {
+			return "#" + ((1 << 24) + (parseInt(r) << 16) + (parseInt(g) << 8) + parseInt(b)).toString(16).slice(1);
+		}
+		function hexToRgb(hex) {
+			// Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
+			var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+			hex = hex.replace(shorthandRegex, function(m, r, g, b) {
+				return r + r + g + g + b + b;
+			});
+
+			var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+			return result ? {
+				r: parseInt(result[1], 16),
+				g: parseInt(result[2], 16),
+				b: parseInt(result[3], 16)
+			} : null;
+		}
 		$(document).ready(function(){
 			$(".rgb").on("change",function(){
 				var rojo = $("#slider1").val();
 				var verde = $("#slider2").val();
 				var azul = $("#slider3").val();
+				$("#hex").val(rgbToHex(rojo,verde,azul));
 				$("#test").css("background-color","rgb("+rojo+","+verde+","+azul+")");
 			});
 			$("#checkbox-v-2a").on("click",function(){
@@ -39,6 +57,15 @@
 			});
 			$(".ui-flipswitch").on("click",function(){
 				$("#opciones").toggleClass("hidden");
+			});
+			$("#hex").on("change",function(){
+				var colores = hexToRgb($(this).val());
+				var rojo = colores.r;
+				var verde = colores.g;
+				var azul = colores.b;
+				$("#slider1").val(rojo).slider("refresh");
+				$("#slider2").val(verde).slider("refresh");
+				$("#slider3").val(azul).slider("refresh");
 			});
 		});
 	</script>
@@ -59,6 +86,8 @@
 			<input class="rgb" type="range" name="slider2" id="slider2" value="127" min="0" max="255" data-theme="a" />
 			<label for="slider3">Azul:</label>
 			<input class="rgb" type="range" name="slider3" id="slider3" value="127" min="0" max="255" data-theme="a" />
+			<br />
+			<input type="text" id="hex" value="#88888"/>
 			
 			<label for="flip-checkbox-1">Mostrar opciones</label>
 			<input data-role="flipswitch" name="flip-checkbox-1" id="flip-checkbox-1" type="checkbox">
