@@ -68,6 +68,12 @@
 				$("#slider3").val(azul).slider("refresh");
 				$("#test").css("background-color","rgb("+rojo+","+verde+","+azul+")");
 			});
+			$("#hex").on("focus",function(){
+				$("#rgb").slideUp();
+			});
+			$("#hex").on("blur",function(){
+				$("#rgb").slideDown();
+			});
 		});
 	</script>
 </head>
@@ -80,13 +86,14 @@
 			<p>Prueba de aplicación móvil por <strong>David Espínola</strong>.</p>
 			
 			<center><div id="test" class="sombra circulo"></div></center>
-			
-			<label for="slider1">Rojo:</label>
-			<input class="rgb" type="range" name="slider1" id="slider1" value="127" min="0" max="255" data-theme="a" />
-			<label for="slider2">Verde:</label>
-			<input class="rgb" type="range" name="slider2" id="slider2" value="127" min="0" max="255" data-theme="a" />
-			<label for="slider3">Azul:</label>
-			<input class="rgb" type="range" name="slider3" id="slider3" value="127" min="0" max="255" data-theme="a" />
+			<div id="rgb">
+				<label for="slider1">Rojo:</label>
+				<input class="rgb" type="range" name="slider1" id="slider1" value="127" min="0" max="255" data-theme="a" />
+				<label for="slider2">Verde:</label>
+				<input class="rgb" type="range" name="slider2" id="slider2" value="127" min="0" max="255" data-theme="a" />
+				<label for="slider3">Azul:</label>
+				<input class="rgb" type="range" name="slider3" id="slider3" value="127" min="0" max="255" data-theme="a" />
+			</div>
 			<br />
 			<input type="text" id="hex" value="#88888"/>
 			
