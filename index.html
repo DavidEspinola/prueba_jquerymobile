@@ -50,13 +50,13 @@
 				$("#hex").val(rgbToHex(rojo,verde,azul));
 				$("#test").css("background-color","rgb("+rojo+","+verde+","+azul+")");
 			});
-			$("#checkbox-v-2a").on("click",function(){
+			$("#checkbox-v-2a").on("change",function(){
 				$("#test").toggleClass("sombra");
 			});
-			$("#checkbox-v-2b").on("click",function(){
+			$("#checkbox-v-2b").on("change",function(){
 				$("#test").toggleClass("circulo");
 			});
-			$(".ui-flipswitch").on("click",function(){
+			$(".ui-flipswitch").on("change",function(){
 				$("#opciones").toggleClass("hidden");
 			});
 			$("#hex").on("change",function(){
@@ -95,7 +95,7 @@
 				<input class="rgb" type="range" name="slider3" id="slider3" value="127" min="0" max="255" data-theme="a" />
 			</div>
 			<br />
-			<input type="text" id="hex" value="#88888"/>
+			<input type="text" id="hex" value="#808080"/>
 			
 			<label for="flip-checkbox-1">Mostrar opciones</label>
 			<input data-role="flipswitch" name="flip-checkbox-1" id="flip-checkbox-1" type="checkbox">
